@@ -165,7 +165,7 @@
         dom.window.document.head.insertAdjacentHTML('beforeend', '<meta charset="ISO-8859-1">');
 
         // simplify
-        const reader = new readability(dom.window.document);
+        const reader = new readability.Readability(dom.window.document);
         const article = reader.parse();
 
         // return content
