@@ -11,7 +11,7 @@
     const jsdom = require('jsdom');
     const fetch = require('node-fetch');
     const download = require('download');
-    const readability = require('readability');
+    var { Readability } = require('@mozilla/readability');
     const jimp = require('jimp');
     const isAbsoluteUrl = require('is-absolute-url');
 
@@ -165,7 +165,7 @@
         dom.window.document.head.insertAdjacentHTML('beforeend', '<meta charset="ISO-8859-1">');
 
         // simplify
-        const reader = new readability.Readability(dom.window.document);
+        const reader = new Readability(dom.window.document);
         const article = reader.parse();
 
         // return content
