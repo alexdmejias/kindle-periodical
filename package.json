@@ -17,6 +17,7 @@
   "author": "Michael Röber",
   "license": "MIT",
   "dependencies": {
+    "@mozilla/readability": "0.4.1",
     "download": "^7.0.0",
     "html-minifier": "^4.0.0",
     "is-absolute-url": "^3.0.0",
@@ -24,7 +25,6 @@
     "jsdom": "^15.1.1",
     "minimist": "^1.2.0",
     "node-fetch": "^2.1.2",
-    "readability": "git://github.com/mozilla/readability.git",
     "rimraf": "^2.6.2",
     "sanitize-html": "^1.17.0",
     "showdown": "^1.8.6",
