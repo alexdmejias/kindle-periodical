@@ -7,8 +7,7 @@
     "kindle-periodical": "./cmd.js"
   },
   "scripts": {
-    "test": "node ./tests/tests.js",
-    "install": "node install.js"
+    "test": "node ./tests/tests.js"
   },
   "keywords": [
     "mobi",

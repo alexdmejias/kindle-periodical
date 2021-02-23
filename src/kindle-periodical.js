@@ -82,7 +82,7 @@
         return new Promise((resolve, reject) => {
             let commands = [
                 'cd ' + path.normalize(bookFolderPath),
-                `${path.resolve(__dirname, '..', 'bin/kindlegen')} -c2 contents.opf -o ${filename}.mobi`
+                `${path.resolve(__dirname, '..', 'bin/kindlegen-' + process.platform)} -c2 contents.opf -o ${filename}.mobi`
             ];
 
             let kindlegenExec = exec(commands.join(' && '));
