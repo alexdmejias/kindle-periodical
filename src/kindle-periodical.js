@@ -16,7 +16,7 @@
     const FileHandler = require('./file.js');
     const RemoteHandler = require('./remote.js');
 
-    const bookFolderPath = path.join(process.cwd(), 'book');
+    const bookFolderPath = process.env.TMP_BOOK_PATH;
     const mobiSupportedTags = [
         'a', 'address', 'article', 'aside', 'b', 'blockquote', 'body', 'br',
         'caption', 'center', 'cite', 'code', 'col', 'dd',
@@ -82,10 +82,11 @@
         return new Promise((resolve, reject) => {
             let commands = [
                 'cd ' + path.normalize(bookFolderPath),
-                `${path.resolve(__dirname, '..', 'bin/kindlegen-' + process.platform)} -c2 contents.opf -o ${filename}.mobi`
+                `${path.resolve(__dirname, '..', 'bin/kindlegen-' + process.platform)} contents.opf -o ${filename}.mobi`
             ];
 
             let kindlegenExec = exec(commands.join(' && '));
+            console.log(commands)
 
             kindlegenExec.stdout.pipe(process.stdout);
             kindlegenExec.stderr.pipe(process.stderr);
@@ -292,7 +293,8 @@
 
         let fileName = 'nav-contents.ncx';
         console.log(`-> create ncx (HTML) with Name ${fileName}`);
-        FileHandler.writeToBookFolder(fileName, $ncx({
+
+        await FileHandler.writeToBookFolder(fileName, $ncx({
             title   : params.title,
             author  : params.creator,
             sections: sections.join('')

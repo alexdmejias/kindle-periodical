@@ -8,7 +8,7 @@
     const assert = require('assert');
     const rimraf = require('rimraf');
 
-    const bookFolderPath = path.join(process.cwd(), 'book');
+    const bookFolderPath = process.env.TMP_BOOK_PATH;
 
     exports.getTemplate = function (filename) {
         let fileName = `${filename}.tpl`;
@@ -64,7 +64,17 @@
         // create folder if not exists
         await this.createFolder(bookFolderPath);
 
-        return fs.writeFile(path.join(bookFolderPath, fileName), fileContent, 'latin1');
+        try {
+            await fs.writeFile(path.join(bookFolderPath, fileName), fileContent);
+
+            const t = await this.checkIfFileExists(path.join(bookFolderPath, fileName));
+
+            return true;
+        } catch (e) {
+            console.log('alexalex - !!!!!!!! file.js:70', e);
+
+            return e;
+        }
     };
 
     exports.cleanupBookFolder = function () {

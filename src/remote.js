@@ -20,7 +20,7 @@
     const FileHandler = require('./file.js');
 
     const maxImageSizeMb = 5;
-    const bookFolderPath = path.join(process.cwd(), 'book');
+    const bookFolderPath = process.env.TMP_BOOK_PATH;
 
     async function isUrlAvailable (link) {
         try {
@@ -91,7 +91,7 @@
                 const baseName = path.basename(img.src, extension);
                 const cleanedBaseName = baseName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
                 const cleanedFileName = cleanedBaseName + extension;
-                const cleanedImagePath = path.join(process.cwd(), 'book', cleanedFileName);
+                const cleanedImagePath = path.join(tmpBookPath, cleanedFileName);
 
                 // check if absolute url, try to fix if not
                 if (!isAbsoluteUrl(img.src)) {
