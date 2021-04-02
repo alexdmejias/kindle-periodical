@@ -20,7 +20,7 @@
     const FileHandler = require('./file.js');
 
     const maxImageSizeMb = 5;
-    const bookFolderPath = process.env.TMP_BOOK_PATH;
+    const tmpBookPath = process.env.TMP_BOOK_PATH;
 
     async function isUrlAvailable (link) {
         try {
